@@ -1,33 +1,35 @@
 import React, { Component } from "react";
+import BottomTabNavigator from "./components/BottomTabNavigator";
 import { Rajdhani_600SemiBold } from "@expo-google-fonts/rajdhani";
 import * as Font from "expo-font";
 
-import BottomTabNavigator from "./components/BottomTabNavigator";
-
 export default class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      fontLoaded: false
-    };
+  constructor(){
+    super()
+
+      this.state={
+        fontLoaded : false
+      } 
+    
   }
 
-  async loadFonts() {
+  loadFont=async()=>{
     await Font.loadAsync({
-      Rajdhani_600SemiBold: Rajdhani_600SemiBold
-    });
-    this.setState({ fontLoaded: true });
+      Rajdhani_600SemiBold:Rajdhani_600SemiBold
+    })
+    this.setState({fontLoaded:true})
   }
-
-  componentDidMount() {
-    this.loadFonts();
+  componentDidMount(){
+    this.loadFont();
   }
-
   render() {
-    const { fontLoaded } = this.state;
-    if (fontLoaded) {
+
+    const{fontLoaded} = this.state;
+    if(fontLoaded){
       return <BottomTabNavigator />;
+    }else{
+      return null;
     }
-    return null;
+    
   }
 }
